@@ -16,4 +16,12 @@ export class HeaderComponent {
   isActive(link: string): boolean {
     return this.router.url.includes('/' + link);
   }
+
+  onNotificationClick() {
+    console.log('notification')
+  }
+
+  exit() {
+    console.log('exit')
+  }
 }

@@ -1,1 +1,17 @@
-<p>card works!</p>
+<div class="card">
+  <div class="card-header">
+    <h5>{{data.name}}</h5>
+    <app-status-bar [status]="data.status"></app-status-bar>
+  </div>
+  <div class="card-content">
+    <div class="field">
+      <span class="field-name">From:</span> {{data.from}}
+    </div>
+    <div class="field">
+      <span class="field-name">To:</span> {{data.to}}
+    </div>
+    <div class="field">
+      <span class="field-name">Due Date:</span> <span class="date"> {{data.date}}</span>
+    </div>
+  </div>
+</div>

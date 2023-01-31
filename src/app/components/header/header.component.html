@@ -15,10 +15,10 @@
   </div>
 
   <div class="buttons">
-    <button mat-icon-button>
+    <button mat-icon-button (click)="onNotificationClick()">
       <mat-icon class="icon">notifications</mat-icon>
     </button>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="exit()">
       <app-icon [icon]="'exit'" class="icon"></app-icon>
     </button>
   </div>

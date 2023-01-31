@@ -1,5 +1,16 @@
 <div class="map-wrapper">
-  <ng-container class="card-list">
-    <app-card></app-card>
+  <div>
+    <ng-container class="card-list" *ngFor="let card of cards">
+      <app-card class="card" [data]="card"></app-card>
+    </ng-container>
+  </div>
+  <ng-container class="map-container">
+    <google-map height="400px"
+                width="750px"
+                [center]="center"
+                [zoom]="zoom"
+                (mapClick)="moveMap($event)"
+                (mapMousemove)="move($event)">
+    </google-map>
   </ng-container>
 </div>

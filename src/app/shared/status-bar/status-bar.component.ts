@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./status-bar.component.scss']
 })
 export class StatusBarComponent {
-  @Input() status: 'low' | 'uncomplete' | 'unassigned' = 'unassigned';
+  @Input() status: 'low' | 'uncomplete' | 'unassigned' | 'review' = 'unassigned';
 
   getColor(): string {
     switch (this.status) {
@@ -25,8 +25,10 @@ export class StatusBarComponent {
         return 'Low Risk';
       case 'uncomplete':
         return 'Uncomplete';
+      case 'review':
+        return 'Needs Review';
       default:
-        return 'Unnasigned';
+        return 'Unassigned';
     }
   }
 }

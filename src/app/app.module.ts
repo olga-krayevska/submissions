@@ -30,6 +30,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MapComponent } from './components/map/map.component';
 import { StatusBarComponent } from './shared/status-bar/status-bar.component';
 import { CardComponent } from './components/card/card.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { CardComponent } from './components/card/card.component';
     MatButtonToggleModule,
     MatCheckboxModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    GoogleMapsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,37 @@
+.card {
+  border: 1px solid #B8B9BC;
+  border-radius: 4px;
+  width: 460px;
+  height: 145px;
+  padding: 15px;
+  margin: 4px 0;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h5 {
+      font-family: 'Roboto';
+      font-weight: 700;
+      font-size: 18px;
+    }
+  }
+
+  &-content {
+    .field {
+      display: flex;
+
+      .field-name {
+        color: #B8B9BC;
+        margin-right: 10px;
+      }
+
+      .date {
+        color: #FF3D00;
+      }
+    }
+  }
+
+
+}

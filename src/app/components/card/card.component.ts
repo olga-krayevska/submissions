@@ -1,4 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+export interface ICard {
+  name: string;
+  status: 'low' | 'uncomplete' | 'review';
+  from: string;
+  to: string;
+  date: string;
+}
 
 @Component({
   selector: 'app-card',
@@ -6,5 +14,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent {
+  @Input() data!: ICard;
 
 }

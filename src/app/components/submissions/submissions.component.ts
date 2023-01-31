@@ -40,6 +40,6 @@ export class SubmissionsComponent implements OnInit {
   }
 
   export() {
-
+    console.log('export')
   }
 }
