@@ -1,0 +1,85 @@
+@use '@angular/material' as mat;
+
+@import "@angular/material/theming";
+
+@include mat.core();
+
+$angular-primary: mat.define-palette(mat.$gray-palette, 500, 50, 900);
+$angular-accent: mat.define-palette(mat.$gray-palette, 200, 100, 400);
+
+$angular-warn: mat.define-palette(mat.$red-palette);
+
+$angular-default-theme: mat.define-light-theme(
+                (
+                        color: (
+                                primary: $angular-primary,
+                                accent: $angular-accent,
+                                warn: $angular-warn,
+                        ),
+                )
+);
+
+@include mat.all-component-themes($angular-default-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+div.mat-mdc-text-field-wrapper, .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background: #FFFFFF;
+  /* Color/Black/Borders */
+
+  border: 1px solid #B8B9BC;
+  border-radius: 4px;
+}
+//
+//.mat-mdc-select-value {
+//  color: #060C1B;
+//  font-family: 'Roboto';
+//  span {
+//    color: #060C1B;
+//    font-family: 'Roboto';
+//  }
+//}
+//
+//mat-label {
+//  color: #060C1B;
+//  font-family: 'Roboto';
+//}
+//
+//.ng-trigger {
+//  background-color: #FFFFFF;
+//}
+//
+//.mat-mdc-option.mat-mdc-option-active, .mat-mdc-focus-indicator, .mdc-list-item,  {
+//  background-color: #FFFFFF;
+//
+//  &:hover {
+//    background-color: #FFFFFF;
+//  }
+//
+//  &:focus {
+//    background-color: #FFFFFF;
+//  }
+//  .mdc-list-item__primary-text {
+//    color: #060C1B;
+//    &:hover {
+//      color: #060C1B;
+//    }
+//  }
+//
+//}
+//
+//.mat-calendar-body-cell-content, .mat-calendar-body-label, .ng-star-inserted, .mat-mdc-button:not(:disabled) {
+//  color: #060C1B;
+//}
+//
+//.mat-mdc-select-arrow-wrapper {
+//  transform: translateY(0);
+//  background: url('/assets/icons/arrow.svg') no-repeat center;
+//  width: 24px;
+//  .mat-mdc-select-arrow {
+//    svg {
+//      opacity: 0;
+//    }
+//  }
+//}

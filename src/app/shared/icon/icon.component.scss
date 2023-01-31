@@ -1,0 +1,38 @@
+.icon-wrapper {
+  .icon {
+    min-width: 20px;
+    min-height: 20px;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    background-color: #FFFFFF;
+    margin-right: 10px;
+    //mask-image: url('/assets/icons/arrow.svg');
+    &.exit {
+      mask-image: url('/assets/icons/exit.svg');
+    }
+
+    &.download {
+      mask-image: url('/assets/icons/download.svg');
+    }
+
+    &.circle {
+      mask-image: url('/assets/icons/circle.svg');
+    }
+
+    &.green {
+      background-color: #53D86A;
+    }
+
+    &.red {
+      background-color: #FF3D00;
+    }
+
+    &.grey {
+      background-color: #B8B9BC;
+    }
+
+    &.blue {
+      background-color: #2188D9;
+    }
+  }
+}

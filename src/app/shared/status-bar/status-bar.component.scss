@@ -1,0 +1,27 @@
+.status-bar {
+  border: 1px solid;
+  border-radius: 4px;
+  display: flex;
+  height: 32px;
+  padding: 4px 16px;
+  align-items: center;
+
+
+  &.green {
+    background-color: #D7E5DA;
+    border-color: #53D86A;
+    color: #53D86A;
+  }
+
+  &.red {
+    background-color: rgba(255, 61, 0, 0.1);
+    border-color: #FF3D00;
+    color: #FF3D00;
+  }
+
+  &.grey {
+    background-color: #ECECED;
+    border-color: #B8B9BC;
+    color: #B8B9BC;
+  }
+}

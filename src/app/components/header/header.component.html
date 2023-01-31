@@ -1,0 +1,25 @@
+<div class="header-wrapper">
+  <h2 class="logo">ZenduForms</h2>
+
+  <div class="nav-bar">
+    <ng-container *ngFor="let item of links">
+      <a
+        class="nav-bar-link"
+        [routerLink]="item.link"
+        [class.active]="isActive(item.link)"
+      >
+        <app-icon [icon]="item.icon"></app-icon>
+        {{ item.link }}
+      </a>
+    </ng-container>
+  </div>
+
+  <div class="buttons">
+    <button mat-icon-button>
+      <mat-icon class="icon">notifications</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <app-icon [icon]="'exit'" class="icon"></app-icon>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+.header-wrapper {
+  height: 57px;
+  background-color: #2188D9;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-around;
+
+  .logo {
+    padding-top: 15px;
+    font-family: 'Roboto';
+    font-size: 32px;
+    margin-bottom: 26px;
+    color: #FFFFFF;
+  }
+
+  .nav-bar {
+    display: flex;
+
+    &-link {
+      display: flex;
+      width: 170px;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: 'Roboto';
+      font-size: 18px;
+      padding: 24px 0;
+      justify-content: center;
+
+      &.active {
+        background-color: #1773BB;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+
+    .icon {
+      color: #FFFFFF;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<div class="submissions-wrapper">
+  <h2 class="header">Submissions</h2>
+  <div class="up-bar" [formGroup]="formGroup" >
+    <app-search-input class="search-field"></app-search-input>
+    <app-select-list
+      placeholder="Select Form"
+      formControlName="form"
+      [list]="formList"
+    ></app-select-list>
+    <app-select-list
+      placeholder="Select Status"
+      formControlName="status"
+      [list]="statusList"
+    ></app-select-list>
+    <app-datepicker></app-datepicker>
+
+    <mat-button-toggle-group class="toggle" formControlName="component" name="componentSwitch" aria-label="switch components">
+      <mat-button-toggle value="map">Map</mat-button-toggle>
+      <mat-button-toggle value="list">List</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div class="export-wrapper" (click)="export()">
+      <app-icon [icon]="'download'" [color]="'blue'"></app-icon>
+      <div class="export-text">Export</div>
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <ng-container *ngIf="formGroup.get('component')?.value === 'list'">
+      <app-table></app-table>
+    </ng-container>
+    <ng-container *ngIf="formGroup.get('component')?.value === 'map'">
+      <app-map></app-map>
+    </ng-container>
+  </div>
+</div>

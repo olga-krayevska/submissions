@@ -1,0 +1,10 @@
+<mat-form-field appearance="fill">
+  <mat-select  [placeholder]="placeholder" [formControl]="formControl">
+    <ng-container *ngFor="let item of list">
+      <mat-option [value]="item">
+        {{ item.name ?? item }}
+      </mat-option>
+    </ng-container>
+  </mat-select>
+</mat-form-field>
+
