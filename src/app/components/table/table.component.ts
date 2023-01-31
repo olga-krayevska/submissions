@@ -1,54 +1,65 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
-
-export interface TableData {
-  task: string
-  status: 'low' | 'uncomplete' | 'unassigned';
-  from: string;
-  to: string;
-  customer: string;
-  date: Date;
-}
-
-const ELEMENT_DATA: TableData[] = [
-  { task: 'workflow', status: 'low', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'low', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'unassigned', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'low', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'uncomplete', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'low', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'uncomplete', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'low', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'unassigned', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'low', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'low', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'low', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'unassigned', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'unassigned', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow2', status: 'low', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip2', date: new Date()},
-  { task: 'workflow2', status: 'low', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip3', date: new Date()},
-  { task: 'workflow', status: 'uncomplete', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'low', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow2', status: 'unassigned', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-  { task: 'workflow', status: 'low', from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: new Date()},
-];
+import { ELEMENT_DATA, TableData, IForm } from './table.constants';
+import { MatSort } from '@angular/material/sort';
+import { FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
+  @Input() formGroup!: FormGroup;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  sub: Subscription = new Subscription();
+
+  index: number = 0;
+
+  elenemtData = ELEMENT_DATA;
 
   displayedColumns: string[] = ['select', 'task', 'status', 'from', 'to', 'customer', 'date'];
-  dataSource = new MatTableDataSource<TableData>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<TableData>(this.elenemtData);
   selection = new SelectionModel<TableData>(true, []);
 
-  ngAfterViewInit() {
+  ngOnInit(): void {
+    this.sub.add(this.formGroup.valueChanges.subscribe((val: IForm) => this.applyFilter(val)));
+  }
+
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe()
+  }
+
+  applyFilter(value: IForm) {
+    let data = this.elenemtData;
+    if (value.status) {
+      data = data.filter(item => item.status === value.status);
+    }
+    if (value.from) {
+      data = data.filter(item => item.from === value.from);
+    }
+    if (value.date) {
+      data = data.filter(item => item.date === value.date);
+    }
+    this.dataSource = new MatTableDataSource<TableData>(data);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    if (value.search) this.dataSource.filter = value.search.trim().toLowerCase();
+
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -68,12 +79,5 @@ export class TableComponent implements AfterViewInit {
     this.selection.select(...this.dataSource.data);
   }
 
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: TableData): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.task}`;
-  }
 
 }

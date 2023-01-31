@@ -1,8 +1,7 @@
 <div class="datepicker-wrapper">
   <mat-form-field appearance="fill">
-    <input matInput [matDatepicker]="picker">
+    <input [formControl]="formControl" matInput [matDatepicker]="picker">
     <mat-datepicker-toggle matIconPrefix [for]="picker">
-
     </mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>

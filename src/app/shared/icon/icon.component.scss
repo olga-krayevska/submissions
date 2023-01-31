@@ -19,6 +19,26 @@
       mask-image: url('/assets/icons/circle.svg');
     }
 
+    &.form {
+      mask-image: url('/assets/icons/form.svg');
+    }
+
+    &.customer {
+      mask-image: url('/assets/icons/customer.svg');
+    }
+
+    &.submission {
+      mask-image: url('/assets/icons/submission.svg');
+    }
+
+    &.history {
+      mask-image: url('/assets/icons/history.svg');
+    }
+
+    &.report {
+      mask-image: url('/assets/icons/report.svg');
+    }
+
     &.green {
       background-color: #53D86A;
     }

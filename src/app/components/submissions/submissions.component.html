@@ -1,18 +1,18 @@
 <div class="submissions-wrapper">
   <h2 class="header">Submissions</h2>
   <div class="up-bar" [formGroup]="formGroup" >
-    <app-search-input class="search-field"></app-search-input>
+    <app-search-input formControlName="search" class="search-field"></app-search-input>
     <app-select-list
-      placeholder="Select Form"
-      formControlName="form"
-      [list]="formList"
+      placeholder="Select From"
+      formControlName="from"
+      [list]="fromList"
     ></app-select-list>
     <app-select-list
       placeholder="Select Status"
       formControlName="status"
       [list]="statusList"
     ></app-select-list>
-    <app-datepicker></app-datepicker>
+    <app-datepicker formControlName="date"></app-datepicker>
 
     <mat-button-toggle-group class="toggle" formControlName="component" name="componentSwitch" aria-label="switch components">
       <mat-button-toggle value="map">Map</mat-button-toggle>
@@ -26,10 +26,10 @@
   </div>
   <div class="content-wrapper">
     <ng-container *ngIf="formGroup.get('component')?.value === 'list'">
-      <app-table></app-table>
+      <app-table [formGroup]="formGroup"></app-table>
     </ng-container>
     <ng-container *ngIf="formGroup.get('component')?.value === 'map'">
-      <app-map></app-map>
+      <app-map [formGroup]="formGroup"></app-map>
     </ng-container>
   </div>
 </div>

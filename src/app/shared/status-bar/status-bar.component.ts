@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { StatusEnum } from '../../enums/enums';
 
 @Component({
   selector: 'app-status-bar',
@@ -6,29 +7,17 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./status-bar.component.scss']
 })
 export class StatusBarComponent {
-  @Input() status: 'low' | 'uncomplete' | 'unassigned' | 'review' = 'unassigned';
+  @Input() status: StatusEnum.LowRisk | StatusEnum.Uncomplete | StatusEnum.Unasigned | StatusEnum.NeedsReview = StatusEnum.Unasigned;
 
   getColor(): string {
     switch (this.status) {
-      case 'low':
+      case StatusEnum.LowRisk:
         return 'green';
-      case 'uncomplete':
+      case StatusEnum.Uncomplete:
         return 'red';
       default:
         return 'grey';
     }
   }
 
-  getStatusText(): string {
-    switch (this.status) {
-      case 'low':
-        return 'Low Risk';
-      case 'uncomplete':
-        return 'Uncomplete';
-      case 'review':
-        return 'Needs Review';
-      default:
-        return 'Unassigned';
-    }
-  }
 }

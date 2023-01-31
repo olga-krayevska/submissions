@@ -3,14 +3,25 @@
     <ng-container class="card-list" *ngFor="let card of cards">
       <app-card class="card" [data]="card"></app-card>
     </ng-container>
+    <div class="card-list" *ngIf="!cards.length">
+      No cards
+    </div>
   </div>
-  <ng-container class="map-container">
-    <google-map height="400px"
-                width="750px"
-                [center]="center"
-                [zoom]="zoom"
-                (mapClick)="moveMap($event)"
-                (mapMousemove)="move($event)">
+  <div class="map-container">
+    <google-map
+      [height]="height"
+      [width]="width"
+      [center]="center"
+      [zoom]="zoom"
+      (mapClick)="moveMap($event)"
+      (mapMousemove)="move($event)"
+    >
+      <ng-container *ngFor="let img of imageBounds">
+        <map-ground-overlay
+          [url]="imageUrl"
+          [bounds]="img"
+        ></map-ground-overlay>
+      </ng-container>
     </google-map>
-  </ng-container>
+  </div>
 </div>

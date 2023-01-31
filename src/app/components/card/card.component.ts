@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { StatusEnum } from '../../enums/enums';
 
 export interface ICard {
   name: string;
-  status: 'low' | 'uncomplete' | 'review';
+  status: StatusEnum.LowRisk | StatusEnum.Uncomplete | StatusEnum.NeedsReview;
   from: string;
   to: string;
   date: string;

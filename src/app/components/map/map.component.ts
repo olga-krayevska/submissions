@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ICard } from '../card/card.component';
 import * as moment from 'moment';
+import { FormGroup } from '@angular/forms';
+import { IForm } from '../table/table.constants';
+import { StatusEnum } from '../../enums/enums';
 
 
 @Component({
@@ -8,48 +11,83 @@ import * as moment from 'moment';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent {
+export class MapComponent implements OnInit{
+  @Input() formGroup!: FormGroup;
+
   month = moment.months()
 
-  cards: ICard[] = [
+  cards: ICard[] = [];
+
+  cardList: ICard[] = [
     {
       name: 'Work Flow: Requires Location',
-      status: 'low',
+      status: StatusEnum.LowRisk,
       from: '123@qwe.com',
       to: '321@ewq.com',
       date: `${new Date().getDay()} ${this.month[new Date().getMonth()]}` },
     {
       name: 'Work Flow: Requires Location',
-      status: 'uncomplete',
+      status: StatusEnum.Uncomplete,
       from: '123@qwe.com',
       to: '321@ewq.com',
       date: `${new Date().getDay()} ${this.month[new Date().getMonth()]}` },
     {
       name: 'Work Flow: Requires Location',
-      status: 'review',
+      status: StatusEnum.NeedsReview,
       from: '123@qwe.com',
       to: '321@ewq.com',
       date: `${new Date().getDay()} ${this.month[new Date().getMonth()]}` },
     {
       name: 'Work Flow: Requires Location',
-      status: 'uncomplete',
+      status: StatusEnum.Uncomplete,
       from: '123@qwe.com',
       to: '321@ewq.com',
       date: `${new Date().getDay()} ${this.month[new Date().getMonth()]}` },
-    { 
+    {
       name: 'Work Flow: Requires Location',
-      status: 'low',
+      status: StatusEnum.LowRisk,
       from: '123@qwe.com',
       to: '321@ewq.com',
       date: `${new Date().getDay()} ${this.month[new Date().getMonth()]}` },
   ]
   display: any;
 
+  height = '625px';
+  width = '950px';
+
   center: google.maps.LatLngLiteral = {
     lat: 24,
     lng: 12
   };
   zoom = 4;
+
+  imageUrl = '/assets/icons/marker.svg';
+  imageBounds: google.maps.LatLngBoundsLiteral[] = [
+    { east: 0.01, north: 0.01, south: -1, west: -1 },
+    { east: 5, north: 5, south: 3, west: 3 },
+  ];
+
+  ngOnInit(): void {
+    this.cards = this.cardList;
+    this.formGroup.valueChanges.subscribe((value: IForm) => this.filterCards(value))
+  }
+
+  filterCards(form: IForm): void {
+    this.cards = this.cardList;
+    if (form.search) {
+      this.cards =  this.cards.filter(item => item.name.indexOf(form.search));
+    }
+    if (form.status) {
+       this.cards =  this.cards.filter(item => item.status === form.status);
+    }
+    if (form.from) {
+       this.cards =  this.cards.filter(item => item.from === form.from);
+    }
+    if (form.date) {
+       //this.cards =  this.cards.filter(item => item.date === form.date);
+    }
+  }
+
   moveMap(event: google.maps.MapMouseEvent) {
     if (event.latLng != null) this.center = (event.latLng.toJSON());
   }
