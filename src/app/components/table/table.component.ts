@@ -1,65 +1,65 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatPaginator } from '@angular/material/paginator';
-import { ELEMENT_DATA, TableData, IForm } from './table.constants';
-import { MatSort } from '@angular/material/sort';
+import { TableData, IForm } from './table.constants';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
+export class TableComponent implements OnInit, OnDestroy {
   @Input() formGroup!: FormGroup;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
 
   sub: Subscription = new Subscription();
 
   index: number = 0;
 
-  elenemtData = ELEMENT_DATA;
+  elementData: TableData[] = [];
 
   displayedColumns: string[] = ['select', 'task', 'status', 'from', 'to', 'customer', 'date'];
-  dataSource = new MatTableDataSource<TableData>(this.elenemtData);
+  dataSource = new MatTableDataSource<TableData>([]);
   selection = new SelectionModel<TableData>(true, []);
+  size: number = 10;
+  pageIndex: number = 0;
+  curPage: number = 0;
+  paginateItems = `1-${this.size}`
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit(): void {
     this.sub.add(this.formGroup.valueChanges.subscribe((val: IForm) => this.applyFilter(val)));
+    this.sub.add(this.dataService.getTableData().subscribe( tabData => {
+      this.elementData = tabData;
+      this.dataSource = new MatTableDataSource<TableData>(tabData.slice(0, this.size));
+    }))
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
-  ngOnDestroy(): void {
+   ngOnDestroy(): void {
     this.sub.unsubscribe()
   }
 
+  paginate(event: any) {
+    this.curPage = event;
+    this.pageIndex=event;
+    this.paginateItems = `${event * this.size - this.size + 1}-${event * this.size}`
+    this.dataSource = new MatTableDataSource<TableData>(
+      this.elementData.slice(event * this.size - this.size, event * this.size)
+    );
+  }
+
   applyFilter(value: IForm) {
-    let data = this.elenemtData;
-    if (value.status) {
-      data = data.filter(item => item.status === value.status);
-    }
-    if (value.from) {
-      data = data.filter(item => item.from === value.from);
-    }
-    if (value.date) {
-      data = data.filter(item => item.date === value.date);
-    }
-    this.dataSource = new MatTableDataSource<TableData>(data);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    if (value.search) this.dataSource.filter = value.search.trim().toLowerCase();
+    this.sub.add(this.dataService.filtreDate(value).subscribe(data => {
+        this.elementData = data;
+        this.curPage = 0;
+        this.dataSource = new MatTableDataSource<TableData>(data.slice(0, this.size));
+      }
+    ))
 
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

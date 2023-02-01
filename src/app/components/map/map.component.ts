@@ -24,31 +24,36 @@ export class MapComponent implements OnInit{
       status: StatusEnum.LowRisk,
       from: '123@qwe.com',
       to: '321@ewq.com',
-      date: `${new Date().getDay()} ${this.month[new Date().getMonth()]}` },
+      date: new Date()
+    },
     {
       name: 'Work Flow: Requires Location',
       status: StatusEnum.Uncomplete,
       from: '123@qwe.com',
       to: '321@ewq.com',
-      date: `${new Date().getDay()} ${this.month[new Date().getMonth()]}` },
+      date: new Date()
+    },
     {
       name: 'Work Flow: Requires Location',
       status: StatusEnum.NeedsReview,
       from: '123@qwe.com',
       to: '321@ewq.com',
-      date: `${new Date().getDay()} ${this.month[new Date().getMonth()]}` },
+      date: new Date()
+    },
     {
       name: 'Work Flow: Requires Location',
       status: StatusEnum.Uncomplete,
       from: '123@qwe.com',
       to: '321@ewq.com',
-      date: `${new Date().getDay()} ${this.month[new Date().getMonth()]}` },
+      date: new Date()
+    },
     {
       name: 'Work Flow: Requires Location',
       status: StatusEnum.LowRisk,
       from: '123@qwe.com',
       to: '321@ewq.com',
-      date: `${new Date().getDay()} ${this.month[new Date().getMonth()]}` },
+      date: new Date()
+    },
   ]
   display: any;
 
@@ -75,7 +80,7 @@ export class MapComponent implements OnInit{
   filterCards(form: IForm): void {
     this.cards = this.cardList;
     if (form.search) {
-      this.cards =  this.cards.filter(item => item.name.indexOf(form.search));
+      this.cards =  this.cards.filter(item => item.name.indexOf(form.search) !== -1);
     }
     if (form.status) {
        this.cards =  this.cards.filter(item => item.status === form.status);
@@ -84,15 +89,23 @@ export class MapComponent implements OnInit{
        this.cards =  this.cards.filter(item => item.from === form.from);
     }
     if (form.date) {
-       //this.cards =  this.cards.filter(item => item.date === form.date);
+       this.cards =  this.cards.filter(item => item.date === form.date);
     }
   }
 
   moveMap(event: google.maps.MapMouseEvent) {
-    if (event.latLng != null) this.center = (event.latLng.toJSON());
+    //if (event.latLng != null) this.center = (event.latLng.toJSON());
   }
+
   move(event: google.maps.MapMouseEvent) {
     if (event.latLng != null) this.display = event.latLng.toJSON();
   }
 
+  mapLayers(): void {
+    console.log('map layers');
+  }
+
+  mapClose(): void {
+    console.log('map close');
+  }
 }

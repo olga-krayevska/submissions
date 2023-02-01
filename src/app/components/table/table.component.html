@@ -46,14 +46,26 @@
 
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef> Due Date </th>
-      <td mat-cell [class.error]="element.status === 'Uncomplete'" *matCellDef="let element"> {{element.date}} </td>
+      <td mat-cell [class.error]="element.status === 'Uncomplete'" *matCellDef="let element"> {{element.date | date: 'MMM d, h:mm a'}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-        (click)="selection.toggle(row)">
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns | paginate: {
+      itemsPerPage: size,
+      currentPage: curPage,
+      totalItems: elementData.length };"
+      (click)="selection.toggle(row)"
+    >
     </tr>
   </table>
-
-  <mat-paginator [pageSizeOptions]="[10]" [pageIndex]="index"></mat-paginator>
+  <div class="paginator">
+    <span class="paginator-text">{{paginateItems}} of {{elementData.length}} submissions</span>
+    <pagination-controls
+      previousLabel=""
+      nextLabel=""
+      (pageChange)="paginate($event)"
+    ></pagination-controls>
+  </div>
 </ng-container>

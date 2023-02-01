@@ -6,7 +6,7 @@ export interface ICard {
   status: StatusEnum.LowRisk | StatusEnum.Uncomplete | StatusEnum.NeedsReview;
   from: string;
   to: string;
-  date: string;
+  date: Date;
 }
 
 @Component({

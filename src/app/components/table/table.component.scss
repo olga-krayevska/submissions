@@ -1,3 +1,13 @@
 .error {
   color: #FF3D00;
 }
+
+.paginator {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &-text {
+    font-size: 16px;
+  }
+}

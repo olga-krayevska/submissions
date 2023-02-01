@@ -11,7 +11,7 @@
       <span class="field-name">To:</span> {{data.to}}
     </div>
     <div class="field">
-      <span class="field-name">Due Date:</span> <span class="date"> {{data.date}}</span>
+      <span class="field-name">Due Date:</span> <span class="date"> {{data.date | date: 'dd MMMM'}}</span>
     </div>
   </div>
 </div>

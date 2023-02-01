@@ -23,5 +23,12 @@
         ></map-ground-overlay>
       </ng-container>
     </google-map>
+    <button mat-mini-fab class="map-button layers" (click)="mapLayers()">
+      <mat-icon>layers</mat-icon>
+    </button>
+    <button mat-mini-fab class="map-button close" (click)="mapClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+
   </div>
 </div>

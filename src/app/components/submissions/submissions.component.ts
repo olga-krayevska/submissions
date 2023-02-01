@@ -22,13 +22,17 @@ export class SubmissionsComponent implements OnInit {
     '1235@ewq.com',
   ]
 
-  statusList = [
-    StatusEnum.LowRisk,
-    StatusEnum.Uncomplete,
-    StatusEnum.Unasigned,
-    StatusEnum.NeedsReview
-  ]
-
+  get statusList() {
+    return this.formGroup.get('component')?.value === 'list' ? [
+      StatusEnum.LowRisk,
+      StatusEnum.Uncomplete,
+      StatusEnum.Unasigned,
+    ] : [
+      StatusEnum.LowRisk,
+      StatusEnum.Uncomplete,
+      StatusEnum.NeedsReview
+    ]
+  }
   constructor(private fb: FormBuilder) {
   }
 

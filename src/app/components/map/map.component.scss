@@ -8,9 +8,26 @@
   }
 
   .map-container {
+    position: relative;
     margin: 30px;
+    .map-button {
+      position: absolute;
+      right: 10px;
+
+      &.layers {
+        top: 495px;
+      }
+
+      &.close {
+        top: 550px;
+      }
+    }
   }
 
 
+}
+
+::ng-deep.gmnoprint {
+  top: 350px;
 }
 
