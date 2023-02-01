@@ -1,6 +1,6 @@
 <div class="map-wrapper">
-  <div>
-    <ng-container class="card-list" *ngFor="let card of cards">
+  <div class="card-list">
+    <ng-container  *ngFor="let card of cards">
       <app-card class="card" [data]="card"></app-card>
     </ng-container>
     <div class="card-list" *ngIf="!cards.length">

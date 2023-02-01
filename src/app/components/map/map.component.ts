@@ -57,8 +57,8 @@ export class MapComponent implements OnInit{
   ]
   display: any;
 
-  height = '625px';
-  width = '950px';
+  height = '60vh';
+  width = '60vw';
 
   center: google.maps.LatLngLiteral = {
     lat: 24,

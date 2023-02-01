@@ -1,5 +1,4 @@
 .header-wrapper {
-  height: 57px;
   background-color: #2188D9;
   padding: 0 32px;
   display: flex;
@@ -34,7 +33,7 @@
 
   .buttons {
     display: flex;
-
+    align-items: center;
     .icon {
       color: #FFFFFF;
     }

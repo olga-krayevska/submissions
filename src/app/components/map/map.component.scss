@@ -2,9 +2,12 @@
   display: flex;
 
   .card-list {
-    width: 460px;
+    min-width: 515px;
     display: flex;
     flex-direction: column;
+    max-height: 65vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .map-container {
@@ -15,11 +18,11 @@
       right: 10px;
 
       &.layers {
-        top: 495px;
+        top: 45vh;
       }
 
       &.close {
-        top: 550px;
+        top: 52vh;
       }
     }
   }
@@ -28,6 +31,6 @@
 }
 
 ::ng-deep.gmnoprint {
-  top: 350px;
+  top: 25vh;
 }
 
