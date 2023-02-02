@@ -26,7 +26,8 @@ export class TableComponent implements OnInit, OnDestroy {
   size: number = 10;
   pageIndex: number = 0;
   curPage: number = 0;
-  paginateItems = `1-${this.size}`
+  paginateItems = `1-${this.size}`;
+
   constructor(private dataService: DataService) {
   }
 
@@ -58,7 +59,6 @@ export class TableComponent implements OnInit, OnDestroy {
         this.dataSource = new MatTableDataSource<TableData>(data.slice(0, this.size));
       }
     ))
-
 
   }
 

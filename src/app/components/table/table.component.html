@@ -4,17 +4,21 @@
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox (change)="$event ? toggleAllRows() : null"
-                      [checked]="selection.hasValue() && isAllSelected()"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()"
-                      >
+        <mat-checkbox
+          (change)="$event ? toggleAllRows() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+          color="primary"
+        >
         </mat-checkbox>
       </th>
       <td mat-cell *matCellDef="let row">
-        <mat-checkbox (click)="$event.stopPropagation()"
-                      (change)="$event ? selection.toggle(row) : null"
-                      [checked]="selection.isSelected(row)"
-                      >
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"
+          color="primary"
+        >
         </mat-checkbox>
       </td>
     </ng-container>
@@ -46,13 +50,18 @@
 
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef> Due Date </th>
-      <td mat-cell [class.error]="element.status === 'Uncomplete'" *matCellDef="let element"> {{element.date | date: 'MMM d, h:mm a'}} </td>
+      <td
+        mat-cell
+        [class.error]="element.status === 'Uncomplete'"
+        *matCellDef="let element"
+      > {{element.date | date: 'MMM d, h:mm a'}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr
       mat-row
       *matRowDef="let row; columns: displayedColumns | paginate: {
+      id: 'custom',
       itemsPerPage: size,
       currentPage: curPage,
       totalItems: elementData.length };"
@@ -62,10 +71,41 @@
   </table>
   <div class="paginator">
     <span class="paginator-text">{{paginateItems}} of {{elementData.length}} submissions</span>
-    <pagination-controls
-      previousLabel=""
-      nextLabel=""
-      (pageChange)="paginate($event)"
-    ></pagination-controls>
+    <pagination-template
+        #p="paginationApi"
+        [id]="'custom'"
+        (pageChange)="paginate($event)"
+        [maxSize]="5"
+    >
+
+
+      <div class="custom-pagination">
+        <div (click)="p.previous()" class="pagination-previous pagination-block" [class.disabled]="p.isFirstPage()">
+          <a> <app-icon [icon]="'arrow-left'" [color]="'paginate'"></app-icon> </a>
+        </div>
+
+        <div
+          class="pagination-block"
+          (click)="p.setCurrent(page.value)"
+          *ngFor="let page of p.pages"
+          [class.current]="p.getCurrent() === page.value"
+        >
+          <a  *ngIf="p.getCurrent() !== page.value">
+            <span>{{ page.label }}</span>
+          </a>
+          <div *ngIf="p.getCurrent() === page.value">
+            <span>{{ page.label }}</span>
+          </div>
+        </div>
+
+        <div (click)="p.next()" class="pagination-next pagination-block" [class.disabled]="p.isLastPage()">
+          <a> <app-icon [icon]="'arrow-right'" [color]="'paginate'"></app-icon> </a>
+        </div>
+      </div>
+
+    </pagination-template>
   </div>
 </ng-container>
+
+
+
