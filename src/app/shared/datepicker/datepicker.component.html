@@ -2,6 +2,7 @@
   <mat-form-field appearance="fill">
     <input [formControl]="formControl" matInput [matDatepicker]="picker">
     <mat-datepicker-toggle matIconPrefix [for]="picker">
+     <mat-icon matDatepickerToggleIcon svgIcon="calendar"></mat-icon>
     </mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>

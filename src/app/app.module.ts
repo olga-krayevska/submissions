@@ -32,6 +32,7 @@ import { IconComponent } from './shared/icon/icon.component';
 import { MapComponent } from './components/map/map.component';
 import { StatusBarComponent } from './shared/status-bar/status-bar.component';
 import { CardComponent } from './components/card/card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { CardComponent } from './components/card/card.component';
     MatPaginatorModule,
     GoogleMapsModule,
     NgxPaginationModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,8 @@
 import { Component, forwardRef } from '@angular/core';
 import { BaseControlValueAccessor } from '../value-accessor';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
 
 @Component({
   selector: 'app-datepicker',
@@ -15,8 +17,13 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class DatepickerComponent extends BaseControlValueAccessor<DatepickerComponent> {
-  constructor() {
+  constructor( private domSanitizer: DomSanitizer,
+               public matIconRegistry: MatIconRegistry) {
     super();
+    this.matIconRegistry.addSvgIcon("calendar", this.setPath(`/assets/icons/calendar.svg`));
+  }
+  private setPath(url: string): SafeResourceUrl {
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
 }

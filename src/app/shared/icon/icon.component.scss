@@ -39,6 +39,25 @@
       mask-image: url('/assets/icons/report.svg');
     }
 
+    &.calendar {
+      mask-image: url('/assets/icons/calendar.svg');
+    }
+
+    &.arrow-left {
+      mask-image: url('/assets/icons/arrow-left.svg');
+      margin-right: 0;
+    }
+
+    &.arrow-right {
+      mask-image: url('/assets/icons/arrow-left.svg');
+      margin-right: 0;
+      transform: rotate(-180deg);
+    }
+
+    &.paginate {
+      background-color: #B8B9BC;
+    }
+
     &.green {
       background-color: #53D86A;
     }
