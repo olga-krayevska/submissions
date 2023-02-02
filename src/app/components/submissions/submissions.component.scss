@@ -8,15 +8,24 @@
   }
   .up-bar {
     display: flex;
-    gap: 40px;
+    justify-content: space-between;
 
-    .search-field {
-      width: 335px;
+    .start-block {
+      display: flex;
+      gap: 40px;
+
+      .search-field {
+        width: 335px;
+      }
     }
   }
-
-  .toggle {
-    height: 48px;
+  .end-block {
+    display: flex;
+    gap: 40px;
+    .toggle {
+      height: 48px;
+      min-width: fit-content;
+    }
   }
 
   .export-wrapper {

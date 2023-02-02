@@ -1,6 +1,7 @@
 <div class="submissions-wrapper">
   <h2 class="header">Submissions</h2>
   <div class="up-bar" [formGroup]="formGroup" >
+    <div class="start-block">
     <app-search-input formControlName="search" class="search-field"></app-search-input>
     <app-select-list
       placeholder="Select From"
@@ -13,15 +14,17 @@
       [list]="statusList"
     ></app-select-list>
     <app-datepicker formControlName="date"></app-datepicker>
+    </div>
+    <div class="end-block">
+      <mat-button-toggle-group class="toggle" formControlName="component" name="componentSwitch" aria-label="switch components">
+        <mat-button-toggle value="map">Map</mat-button-toggle>
+        <mat-button-toggle value="list">List</mat-button-toggle>
+      </mat-button-toggle-group>
 
-    <mat-button-toggle-group class="toggle" formControlName="component" name="componentSwitch" aria-label="switch components">
-      <mat-button-toggle value="map">Map</mat-button-toggle>
-      <mat-button-toggle value="list">List</mat-button-toggle>
-    </mat-button-toggle-group>
-
-    <div class="export-wrapper" (click)="export()">
-      <app-icon [icon]="'download'" [color]="'blue'"></app-icon>
-      <div class="export-text">Export</div>
+      <div class="export-wrapper" (click)="export()">
+        <app-icon [icon]="'download'" [color]="'blue'"></app-icon>
+        <div class="export-text">Export</div>
+      </div>
     </div>
   </div>
   <div class="content-wrapper">
