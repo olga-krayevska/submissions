@@ -9,9 +9,7 @@ import { IForm, TableData } from '../components/table/table.constants';
 export class DataService {
   data = [...ELEMENT_DATA, ...ELEMENT_DATA, ...ELEMENT_DATA, ...ELEMENT_DATA, ...ELEMENT_DATA]
 
-  constructor() { }
-
-  getTableData(): Observable<any> {
+  getTableData(): Observable< TableData[]> {
     return of(this.data)
   }
 

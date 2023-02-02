@@ -7,14 +7,14 @@ export class BaseControlValueAccessor<T> implements ControlValueAccessor {
   formControl: FormControl = new FormControl();
   formControlHasInitValue = false;
 
-  onTouched: () => void = () => {};
+  onTouched: () => void = () => {console.log()};
 
-  writeValue(v: any): void {
+  writeValue(v: unknown): void {
     this.formControl.setValue(v);
     this.formControlHasInitValue = !!v;
   }
 
-  registerOnChange(fn: (v: any) => void): void {
+  registerOnChange(fn: (v: unknown) => void): void {
     this.subscription.add(this.formControl.valueChanges.pipe().subscribe((val) => fn(val)));
   }
 

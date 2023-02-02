@@ -5,6 +5,7 @@ import { TableData, IForm } from './table.constants';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DataService } from '../../services/data.service';
+import { Page } from 'ngx-pagination';
 
 @Component({
   selector: 'app-table',
@@ -16,16 +17,16 @@ export class TableComponent implements OnInit, OnDestroy {
 
   sub: Subscription = new Subscription();
 
-  index: number = 0;
+  index = 0;
 
   elementData: TableData[] = [];
 
   displayedColumns: string[] = ['select', 'task', 'status', 'from', 'to', 'customer', 'date'];
   dataSource = new MatTableDataSource<TableData>([]);
   selection = new SelectionModel<TableData>(true, []);
-  size: number = 10;
-  pageIndex: number = 0;
-  curPage: number = 0;
+  size = 10;
+  pageIndex = 0;
+  curPage = 0;
   paginateItems = `1-${this.size}`;
 
   constructor(private dataService: DataService) {
@@ -43,7 +44,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe()
   }
 
-  paginate(event: any) {
+  paginate(event: number) {
     this.curPage = event;
     this.pageIndex=event;
     this.paginateItems = `${event * this.size - this.size + 1}-${event * this.size}`
@@ -80,11 +81,11 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
 
-  showCurrent(pages: any, current: number): any {
-    return pages.find( (page: any) => page.value === current)
+  showCurrent(pages: Page[], current: number): Page | undefined {
+    return pages.find( (page: Page) => page.value === current)
   }
 
-  paginatorTest(pages: any, current: number): boolean {
+  paginatorTest(pages: Page[], current: number): boolean {
     return current === pages[pages.length-1].value || current === pages[pages.length-2].value || current === pages[0].value || current === pages[1].value
   }
 

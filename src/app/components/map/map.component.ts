@@ -55,7 +55,7 @@ export class MapComponent implements OnInit{
       date: new Date()
     },
   ]
-  display: any;
+  display!:  google.maps.LatLngLiteral;
 
   height = '60vh';
   width = '60vw';
@@ -93,9 +93,9 @@ export class MapComponent implements OnInit{
     }
   }
 
-  moveMap(event: google.maps.MapMouseEvent) {
-    //if (event.latLng != null) this.center = (event.latLng.toJSON());
-  }
+  // moveMap(event: google.maps.MapMouseEvent) {
+  //   //if (event.latLng != null) this.center = (event.latLng.toJSON());
+  // }
 
   move(event: google.maps.MapMouseEvent) {
     if (event.latLng != null) this.display = event.latLng.toJSON();

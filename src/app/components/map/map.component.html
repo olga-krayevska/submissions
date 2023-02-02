@@ -13,7 +13,6 @@
       [width]="width"
       [center]="center"
       [zoom]="zoom"
-      (mapClick)="moveMap($event)"
       (mapMousemove)="move($event)"
     >
       <ng-container *ngFor="let img of imageBounds">

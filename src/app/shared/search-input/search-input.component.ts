@@ -1,4 +1,4 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { BaseControlValueAccessor } from '../value-accessor';
@@ -15,13 +15,10 @@ import { BaseControlValueAccessor } from '../value-accessor';
     }
   ]
 })
-export class SearchInputComponent extends BaseControlValueAccessor<SearchInputComponent> implements OnInit {
+export class SearchInputComponent extends BaseControlValueAccessor<SearchInputComponent> {
 
   constructor() {
     super()
   }
 
-  ngOnInit(): void {
-
-  }
 }

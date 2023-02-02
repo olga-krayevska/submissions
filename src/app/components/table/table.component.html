@@ -132,7 +132,7 @@
           <div
             *ngIf="!(paginatorTest(p.pages, p.getCurrent()))"
             class="pagination-block current"
-          >{{showCurrent(p.pages, p.getCurrent()).label}}</div>
+          >{{showCurrent(p.pages, p.getCurrent())?.label}}</div>
 
           <!--    4      -->
           <div

@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { BaseControlValueAccessor } from '../value-accessor';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -14,16 +14,13 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class SelectListComponent extends BaseControlValueAccessor<SelectListComponent> implements OnInit {
-  @Input() label: string = '';
-  @Input() placeholder: string = '';
-  @Input() list: any;
+export class SelectListComponent extends BaseControlValueAccessor<SelectListComponent> {
+  @Input() label = '';
+  @Input() placeholder = '';
+  @Input() list!: string[];
 
   constructor() {
     super();
-  }
-
-  ngOnInit() {
   }
 
 }
