@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ELEMENT_DATA } from './data.constats';
 import { IForm, TableData } from '../components/table/table.constants';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class DataService {
       data = data.filter(item => item.from === form.from);
     }
     if (form.date) {
-      data = data.filter(item => item.date === form.date);
+      data = data.filter(item => item.date.split('T')[0] === moment(form.date).format('YYYY-MM-DD'));
     }
 
     return of(data)

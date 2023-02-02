@@ -6,7 +6,7 @@ export interface TableData {
   from: string;
   to: string;
   customer: string;
-  date: Date;
+  date: string;
 }
 
 export interface IForm {
