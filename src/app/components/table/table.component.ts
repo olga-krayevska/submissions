@@ -80,4 +80,12 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
 
+  showCurrent(pages: any, current: number): any {
+    return pages.find( (page: any) => page.value === current)
+  }
+
+  paginatorTest(pages: any, current: number): boolean {
+    return current === pages[pages.length-1].value || current === pages[pages.length-2].value || current === pages[0].value || current === pages[1].value
+  }
+
 }
