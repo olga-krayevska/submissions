@@ -24,35 +24,35 @@ export class MapComponent implements OnInit{
       status: StatusEnum.LowRisk,
       from: '123@qwe.com',
       to: '321@ewq.com',
-      date: new Date()
+      date: '2023-02-01T00:00:00.000Z'
     },
     {
       name: 'Work Flow: Requires Location',
       status: StatusEnum.Uncomplete,
       from: '123@qwe.com',
       to: '321@ewq.com',
-      date: new Date()
+      date: '2023-02-01T00:00:00.000Z'
     },
     {
       name: 'Work Flow: Requires Location',
       status: StatusEnum.NeedsReview,
       from: '123@qwe.com',
       to: '321@ewq.com',
-      date: new Date()
+      date: '2023-02-01T00:00:00.000Z'
     },
     {
       name: 'Work Flow: Requires Location',
       status: StatusEnum.Uncomplete,
       from: '123@qwe.com',
       to: '321@ewq.com',
-      date: new Date()
+      date: '2023-02-01T00:00:00.000Z'
     },
     {
       name: 'Work Flow: Requires Location',
       status: StatusEnum.LowRisk,
       from: '123@qwe.com',
       to: '321@ewq.com',
-      date: new Date()
+      date: '2023-02-01T00:00:00.000Z'
     },
   ]
   display!:  google.maps.LatLngLiteral;
@@ -89,13 +89,9 @@ export class MapComponent implements OnInit{
        this.cards =  this.cards.filter(item => item.from === form.from);
     }
     if (form.date) {
-       this.cards =  this.cards.filter(item => item.date === form.date);
+       this.cards =  this.cards.filter(item => item.date.split('T')[0] === moment(form.date).format('YYYY-MM-DD'));
     }
   }
-
-  // moveMap(event: google.maps.MapMouseEvent) {
-  //   //if (event.latLng != null) this.center = (event.latLng.toJSON());
-  // }
 
   move(event: google.maps.MapMouseEvent) {
     if (event.latLng != null) this.display = event.latLng.toJSON();
