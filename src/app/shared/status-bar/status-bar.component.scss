@@ -6,22 +6,21 @@
   padding: 4px 16px;
   align-items: center;
 
-
   &.green {
-    background-color: #D7E5DA;
-    border-color: #53D86A;
-    color: #53D86A;
+    background-color: var(--light-green);
+    border-color: var(--green);
+    color: var(--green);
   }
 
   &.red {
     background-color: rgba(255, 61, 0, 0.1);
-    border-color: #FF3D00;
-    color: #FF3D00;
+    border-color: var(--warn);
+    color: var(--warn);
   }
 
   &.grey {
-    background-color: #ECECED;
-    border-color: #B8B9BC;
-    color: #B8B9BC;
+    background-color: var(--light-grey);
+    border-color: var(--grey);
+    color: var(--grey);
   }
 }

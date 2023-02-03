@@ -4,9 +4,9 @@
     min-height: 20px;
     mask-position: center;
     mask-repeat: no-repeat;
-    background-color: #FFFFFF;
+    background-color: var(--white);
     margin-right: 10px;
-    //mask-image: url('/assets/icons/arrow.svg');
+
     &.exit {
       mask-image: url('/assets/icons/exit.svg');
     }
@@ -55,23 +55,23 @@
     }
 
     &.paginate {
-      background-color: #B8B9BC;
+      background-color: var(--grey);
     }
 
     &.green {
-      background-color: #53D86A;
+      background-color: var(--green);
     }
 
     &.red {
-      background-color: #FF3D00;
+      background-color: var(--warn);
     }
 
     &.grey {
-      background-color: #B8B9BC;
+      background-color: var(--grey);
     }
 
     &.blue {
-      background-color: #2188D9;
+      background-color: var(--blue);
     }
   }
 }

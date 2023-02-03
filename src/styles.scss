@@ -9,43 +9,60 @@ $angular-accent: mat.define-palette(mat.$gray-palette, 200, 100, 400);
 
 $angular-warn: mat.define-palette(mat.$red-palette);
 
-$angular-default-theme: mat.define-light-theme(
-                (
-                        color: (
-                                primary: $angular-primary,
-                                accent: $angular-accent,
-                                warn: $angular-warn,
-                        ),
-                )
-);
+$angular-default-theme: mat.define-light-theme((color: (primary: $angular-primary,
+        accent: $angular-accent,
+        warn: $angular-warn,
+      ),
+    ));
 
 @include mat.all-component-themes($angular-default-theme);
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
 
-div.mat-mdc-text-field-wrapper, .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background: #FFFFFF;
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --white: #FFFFFF;
+  --basic-white: #F1F5F8;
+  --light-grey: #ECECED;
+  --grey: #B8B9BC;
+  --light-green: #D7E5DA;
+  --green: #53D86A;
+  --warn: #FF3D00;
+  --deep-red: #481201;
+  --blue: #2188D9;
+}
+
+div.mat-mdc-text-field-wrapper,
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background: var(--white);
   /* Color/Black/Borders */
 
-  border: 1px solid #B8B9BC;
+  border: 1px solid var(--grey);
   border-radius: 4px;
 }
 
 .mat-button-toggle-checked {
-  background-color: #2188D9;
+  background-color: var(--blue);
+
   button {
     span {
-      color: #FFFFFF;
+      color: var(--white);
     }
   }
 }
-
 
 .mat-mdc-select-arrow-wrapper {
   transform: translateY(0);
   background: url('/assets/icons/arrow.svg') no-repeat center;
   width: 24px;
+
   .mat-mdc-select-arrow {
     svg {
       opacity: 0;

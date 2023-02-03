@@ -1,5 +1,5 @@
 .card {
-  border: 1px solid #B8B9BC;
+  border: 1px solid var(--grey);
   border-radius: 4px;
   width: 460px;
   height: 145px;
@@ -16,6 +16,10 @@
       font-weight: 700;
       font-size: 18px;
     }
+
+    app-status-bar {
+      width: 35%;
+    }
   }
 
   &-content {
@@ -23,15 +27,13 @@
       display: flex;
 
       .field-name {
-        color: #B8B9BC;
+        color: var(--grey);
         margin-right: 10px;
       }
 
       .date {
-        color: #FF3D00;
+        color: var(--warn);
       }
     }
   }
-
-
 }
