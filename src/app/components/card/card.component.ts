@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { StatusEnum } from '../../enums/enums';
+import { StatusEnum } from '../../core/enums/enums';
 
 export interface ICard {
   name: string;

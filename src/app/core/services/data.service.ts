@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ELEMENT_DATA } from './data.constats';
-import { IForm, TableData } from '../components/table/table.constants';
+import { IForm, TableData } from '../../components/table/table.constants';
 import * as moment from 'moment';
+import { ELEMENT_DATA } from '../constants/data.constats';
 
 @Injectable({
   providedIn: 'root'

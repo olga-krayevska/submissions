@@ -1,4 +1,4 @@
-import { StatusEnum } from '../../enums/enums';
+import { StatusEnum } from '../../core/enums/enums';
 
 export interface TableData {
   task: string

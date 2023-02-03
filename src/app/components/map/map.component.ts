@@ -3,7 +3,7 @@ import { ICard } from '../card/card.component';
 import * as moment from 'moment';
 import { FormGroup } from '@angular/forms';
 import { IForm } from '../table/table.constants';
-import { StatusEnum } from '../../enums/enums';
+import { StatusEnum } from '../../core/enums/enums';
 
 
 @Component({
@@ -58,7 +58,7 @@ export class MapComponent implements OnInit{
   display!:  google.maps.LatLngLiteral;
 
   height = '60vh';
-  width = '60vw';
+  width = '70vw';
 
   center: google.maps.LatLngLiteral = {
     lat: 24,

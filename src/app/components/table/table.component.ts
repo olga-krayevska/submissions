@@ -4,7 +4,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { TableData, IForm } from './table.constants';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { DataService } from '../../services/data.service';
+import { DataService } from '../../core/services/data.service';
 import { Page } from 'ngx-pagination';
 
 @Component({

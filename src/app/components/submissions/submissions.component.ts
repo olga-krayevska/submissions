@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { saveAs } from "file-saver";
 import { mergeMap, Subscription } from 'rxjs';
-import { DataService } from 'src/app/services/data.service';
-import { StatusEnum } from '../../enums/enums';
+import { DataService } from 'src/app/core/services/data.service';
+import { StatusEnum } from '../../core/enums/enums';
 import { TableData } from '../table/table.constants';
 
 

@@ -2,17 +2,19 @@
   display: flex;
 
   .card-list {
+    width: 30vw;
     min-width: 515px;
     display: flex;
     flex-direction: column;
     max-height: 65vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
   }
 
   .map-container {
     position: relative;
     margin: 30px;
+
     .map-button {
       position: absolute;
       right: 10px;
@@ -33,4 +35,3 @@
 ::ng-deep.gmnoprint {
   top: 25vh;
 }
-
