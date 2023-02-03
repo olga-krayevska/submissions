@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { saveAs } from "file-saver"
-import { mergeMap, subscribeOn, Subscription } from 'rxjs';
+import { saveAs } from "file-saver";
+import { mergeMap, Subscription } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 import { StatusEnum } from '../../enums/enums';
 import { TableData } from '../table/table.constants';
@@ -97,5 +97,5 @@ export class SubmissionsComponent implements OnInit, OnDestroy{
      .join("\n"); 
      
     return csvString;
-  };   
+  }
 }
