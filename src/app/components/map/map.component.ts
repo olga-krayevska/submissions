@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ICard } from '../card/card.component';
 import * as moment from 'moment';
 import { FormGroup } from '@angular/forms';
-import { IForm } from '../table/table.constants';
+import { IForm } from '../../core/interfaces/data';
 import { StatusEnum } from '../../core/enums/enums';
 
 

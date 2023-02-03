@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { TableData, IForm } from './table.constants';
+import { TableData, IForm } from '../../core/interfaces/data';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DataService } from '../../core/services/data.service';

@@ -1,5 +1,5 @@
 import { StatusEnum } from '../enums/enums';
-import { TableData } from '../../components/table/table.constants';
+import { TableData } from '../interfaces/data';
 
 export const ELEMENT_DATA: TableData[] = [
   { task: 'workflow', status: StatusEnum.LowRisk, from: '123@ewq.com', to: '321@ewq.com', customer: 'pip', date: '2023-02-01T00:00:00.000Z'},

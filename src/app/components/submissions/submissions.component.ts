@@ -4,7 +4,7 @@ import { saveAs } from "file-saver";
 import { mergeMap, Subscription } from 'rxjs';
 import { DataService } from 'src/app/core/services/data.service';
 import { StatusEnum } from '../../core/enums/enums';
-import { TableData } from '../table/table.constants';
+import { TableData } from '../../core/interfaces/data'
 
 
 @Component({

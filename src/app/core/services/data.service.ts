@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IForm, TableData } from '../../components/table/table.constants';
+import { IForm, TableData } from '../interfaces/data';
 import * as moment from 'moment';
 import { ELEMENT_DATA } from '../constants/data.constats';
 
